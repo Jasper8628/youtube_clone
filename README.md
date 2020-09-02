@@ -8,16 +8,6 @@ Creator:
 
 Exploring UI development possibilities with Material UI
 
-
-
-## Table of Contents (Optional)
-
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-
-
 ## Functionalities and Limitations
 
 Go to the following link: 
