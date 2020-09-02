@@ -6,7 +6,7 @@ Creator:
 
 ## Description
 
-An attempt to replicate YouTube's skileton UI while 
+An attempt to replicate YouTube's skileton UI components while 
 exploring UI development possibilities with Material UI
 
 ## Functionalities and Limitations
