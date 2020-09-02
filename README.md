@@ -22,7 +22,7 @@ Exploring UI development possibilities with Material UI
 
 Go to the following link: 
 
-https://jasper--clone.firebaseapp.com/
+https://newproject-f22cf.firebaseapp.com/
 
 - YouTubeApi is utilised to provide a sample data package propping various UI components
 - Search bar is fully functional, however, due to the limited information provided within the API response, some details such as the number of views, the length of the videos, among other things, are not displayed in the search result
