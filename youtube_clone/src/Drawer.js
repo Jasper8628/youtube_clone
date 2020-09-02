@@ -174,8 +174,8 @@ export default function PersistentDrawerLeft() {
                         color="black"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
+                        // edge="start"
+                        className={classes.menuIcon}
                     >
                         <MenuIcon />
                     </IconButton>

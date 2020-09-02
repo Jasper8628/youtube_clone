@@ -43,8 +43,13 @@ const useStyles = makeStyles((theme) => ({
         }),
 
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
+    // menuButton: {
+    //     marginRight: theme.spacing(2),
+    //     marginLeft:"50px",
+    // },
+    menuIcon:{
+        marginLeft:"50px",
+
     },
     hide: {
         display: 'none',
@@ -94,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "none",
         marginTop: "7px",
         alignItems: "center",
+        marginLeft:"30px",
     },
     search: {
         border: "2px lightgray solid",
