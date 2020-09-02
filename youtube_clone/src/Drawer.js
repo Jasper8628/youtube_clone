@@ -23,6 +23,16 @@ import AppsIcon from '@material-ui/icons/Apps';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Avatar from '@material-ui/core/Avatar';
 
+import Home from '@material-ui/icons/Home';
+import Trending from '@material-ui/icons/Whatshot';
+import Sub from '@material-ui/icons/Subscriptions';
+import Library from '@material-ui/icons/VideoLibrary';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
+import HistoryIcon from '@material-ui/icons/History';
+import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,24 +50,24 @@ export default function PersistentDrawerLeft() {
     const [open, setOpen] = React.useState(false);
 
     const [state, dispatch] = useCountContext();
-    const handleSearch=()=>{
-            return gapi.client.youtube.search.list({
-                "part": [
-                    "snippet"
-                ],
-                "maxResults": 25,
-                "q": inputSearch
-            })
-                .then(function (response) {
-                    // Handle the results here (response.result has the parsed body).
-                    console.log("Response", response.result);
-                    dispatch({
-                        type:"result",
-                        result:response.result,
-                    })
-                },
-                    function (err) { console.error("Execute error", err); });
-        
+    const handleSearch = () => {
+        return gapi.client.youtube.search.list({
+            "part": [
+                "snippet"
+            ],
+            "maxResults": 25,
+            "q": inputSearch
+        })
+            .then(function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response.result);
+                dispatch({
+                    type: "result",
+                    result: response.result.items,
+                })
+            },
+                function (err) { console.error("Execute error", err); });
+
     }
 
     const handleDrawerOpen = () => {
@@ -108,6 +118,47 @@ export default function PersistentDrawerLeft() {
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
+    const array1 = [
+        {
+            name: "Home",
+            icon: <Home />
+        },
+        {
+            name: "Trending",
+            icon: <Trending />
+        },
+        {
+            name: "Subscription",
+            icon: <Sub />
+        },
+        
+    ];
+    const array2=[
+        {
+            name: "Library",
+            icon: <Library />
+        },
+        {
+            name: "History",
+            icon: <HistoryIcon />
+        },
+        {
+            name: "Your videos",
+            icon: <OndemandVideoIcon />
+        },
+        {
+            name: "Purchases",
+            icon: <LocalOfferIcon />
+        },
+        {
+            name: "Watch later",
+            icon: <WatchLaterIcon />
+        },
+        {
+            name: "Show more",
+            icon: <KeyboardArrowDownIcon />
+        },
+    ]
 
     return (
         <div className={classes.root}>
@@ -120,7 +171,7 @@ export default function PersistentDrawerLeft() {
             >
                 <Toolbar className={classes.toolBar}>
                     <IconButton
-                        color="inherit"
+                        color="black"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -159,13 +210,13 @@ export default function PersistentDrawerLeft() {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="new video" color="inherit">
-                                <VideoCallIcon />
+                        <IconButton aria-label="new video" color="black">
+                            <VideoCallIcon />
                         </IconButton>
-                        <IconButton aria-label="apps" color="inherit">
-                                <AppsIcon />
+                        <IconButton aria-label="apps" color="black">
+                            <AppsIcon />
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                        <IconButton aria-label="show 17 new notifications" color="black">
                             <Badge badgeContent={7} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
@@ -219,19 +270,19 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <Divider />
                 <List>
-                    {['Home', 'Trending', 'Subscription'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                    {array1.map((item, index) => (
+                        <ListItem className="drawerList" button key={index}>
+                            <ListItemIcon className="drawerIcon">{item.icon} </ListItemIcon>
+                            <ListItemText primary={item.name} />
                         </ListItem>
                     ))}
                 </List>
                 <Divider />
                 <List>
-                    {['Library', 'History', 'Your videos', 'Purchases', 'Watch later', 'Show more'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                    {array2.map((item, index) => (
+                        <ListItem className="drawerList" button key={index}>
+                            <ListItemIcon className="drawerIcon">{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.name} />
                         </ListItem>
                     ))}
                 </List>

@@ -1,5 +1,5 @@
 
-import{install} from '@material-ui/styles';
+
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    toolBar:{
-        backgroundColor:"gray",
+    toolBar: {
+        backgroundColor: "white",
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -25,18 +25,18 @@ const useStyles = makeStyles((theme) => ({
         }),
     },
     mainPage: {
-        flex:1,
-        width:"100%",
-        padding:"20px",
+        flex: 1,
+        width: "100%",
+        padding: "20px",
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        backgroundColor:'#f9f9f9',
+        backgroundColor: '#f9f9f9',
     },
-    mainPageShift:{
+    mainPageShift: {
         width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: "140px" ,
+        marginLeft: "140px",
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
-        paddingLeft:"10px",
+        paddingLeft: "10px",
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
@@ -90,13 +90,13 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
     },
-    linkComponent:{
-        textDecoration:"none",
-        marginTop:"7px",
-        alignItems:"center",
+    linkComponent: {
+        textDecoration: "none",
+        marginTop: "7px",
+        alignItems: "center",
     },
     search: {
-        // border:"2px black solid",
+        border: "2px lightgray solid",
         position: 'relative',
         justifyContent: 'end',
         borderRadius: theme.shape.borderRadius,
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
-        paddingLeft:"10px",
+        paddingLeft: "10px",
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
@@ -122,23 +122,23 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    search_Icon:{
+    search_Icon: {
         borderRadius: theme.shape.borderRadius,
-        width:"50px",
-        backgroundColor:"lightgray",
-        borderLeft:"1px solid gray",        
+        width: "50px",
+        backgroundColor: "lightgray",
+        borderLeft: "1px solid gray",
         padding: theme.spacing(0, 2),
         height: '100%',
         position: 'absolute',
-        top:0,
-        right:0,
-        paddingTop:"2px",
-        paddingRight:0,
+        top: 0,
+        right: 0,
+        paddingTop: "2px",
+        paddingRight: 0,
         // justifyContent: 'center',
         alignItems: 'center',
     },
     inputRoot: {
-        width:"100%",
+        width: "100%",
         color: 'inherit',
     },
     inputInput: {

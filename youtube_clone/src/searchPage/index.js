@@ -32,9 +32,10 @@ function Index() {
                 <Filter />
                 {/* <hr /> */}
                 {state.hasResult ? (
-                    state.result.items.map((item, index) => (
+                    state.result.map((item, index) => (
                         <div key={index}>
                             <VideoCard
+                                isHome={false}
                                 id={item.id.videoId}
                                 title={item.snippet.title}
                                 description={item.snippet.description}
@@ -56,7 +57,7 @@ function Index() {
                 /> */}
 
             </div>
-            <VidewRow />
+            {/* <VidewRow /> */}
 
 
 

@@ -1,3 +1,7 @@
 .rec__vid{
     flex: 0.8;
 }
+.videoContainer{
+    display: flex;
+    flex-wrap: wrap;
+}

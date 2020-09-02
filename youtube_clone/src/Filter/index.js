@@ -13,6 +13,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TuneIcon from '@material-ui/icons/Tune';
+import { useCountContext } from "../utils/GlobalState";
+import { ListItem } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
     root: {
@@ -43,15 +45,75 @@ function createData(upload, type, duration, features, sort) {
 }
 
 function Row(props) {
+    const [state, dispatch] = useCountContext();
+    const handleFilter = (event) => {
+        const targetName = event.target.getAttribute('name');
+        if (state.hasResult) {
+            let filterResult;
+            switch (targetName) {
+                case "Last hour":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 1);
+                    console.log(filterResult, targetName)
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "Today":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 24);
+                    console.log(filterResult,targetName)
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This week":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 168);
+                    console.log(filterResult,targetName)
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This month":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 720);
+                    console.log(filterResult,targetName)
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This year":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 8736);
+                    console.log(filterResult,targetName)
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+            }
+            // console.log(filterResult);
+            // dispatch({
+            //     type: "result",
+            //     result: filterResult,
+            // })
+
+        } else { console.log("no result") }
+    }
     const { row } = props;
     return (
         <React.Fragment>
             <TableRow>
-                <TableCell>{row.upload}</TableCell>
-                <TableCell>{row.type} </TableCell>
-                <TableCell>{row.duration} </TableCell>
-                <TableCell>{row.features} </TableCell>
-                <TableCell>{row.sort} </TableCell>
+                <TableCell  ><ListItem button onClick={handleFilter} value="upload" name={row.upload}>{row.upload}</ListItem> </TableCell>
+                <TableCell onClick={handleFilter} value="type" name={row.type}>{row.type} </TableCell>
+                <TableCell onClick={handleFilter} value="duration" name={row.duration}>{row.duration} </TableCell>
+                <TableCell onClick={handleFilter} value="features" name={row.features}>{row.features} </TableCell>
+                <TableCell onClick={handleFilter} value="sort" name={row.sort}>{row.sort} </TableCell>
             </TableRow>
         </React.Fragment>
     );
@@ -100,7 +162,7 @@ export default function CollapsibleTable() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.map((row,index) => (
+                                    {rows.map((row, index) => (
                                         <Row key={index} row={row} />
                                     ))}
                                 </TableBody>

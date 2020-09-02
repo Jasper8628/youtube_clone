@@ -21,7 +21,7 @@ function Index() {
                         authenticate().then(loadClient);
                     });
             });
-        }
+        } else {execute()}
     }, []);
     function authenticate() {
         return gapi.auth2.getAuthInstance()
@@ -30,7 +30,7 @@ function Index() {
                 function (err) { console.error("Error signing in", err); });
     }
     function loadClient() {
-        gapi.client.setApiKey("AIzaSyBSrN4egRIz78w3VznDrfS4ivCYuqadNgE");
+        gapi.client.setApiKey("AIzaSyDd7P9EOAUIy5CQ1Lcjw3H3CWHsjKQ8MTM");
         return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
             .then(function () {
                 console.log("GAPI client loaded for API");
@@ -55,7 +55,7 @@ function Index() {
                 console.log("Response", response);
                 dispatch({
                     type:"result",
-                    result:response.result,
+                    result:response.result.items,
                 })
             },
                 function (err) { console.error("Execute error", err); });
@@ -73,9 +73,10 @@ function Index() {
             <h1>Recommended videos</h1>
             
             {state.hasResult ? (
-                    state.result.items.map((item, index) => (
-                        <div key={index}>
+                    state.result.map((item, index) => (
+                        <div className="videoContainer" key={index}>
                             <VideoCard
+                                isHome={true}
                                 id={item.id.videoId}
                                 title={item.snippet.title}
                                 description={item.snippet.description}

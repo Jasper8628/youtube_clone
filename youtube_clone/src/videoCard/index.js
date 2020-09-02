@@ -12,18 +12,41 @@ import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        marginBottom: "30px",
     },
+    cardActionArea: {
+        display: "flex",
+        maxWidth: "70%",
+        justifyContent:"start",
+    },
+    cardActionAreaHome:{
+       width:"300px",
+    },
+    cardMedia: {
+        objectFit: "contain",
+        height: "138px",
+        width: "246px",
+    },
+    videoTitle: {
+        color: "black",
+    }
 });
 
-export default function ImgMediaCard({ id, views, subs, description, title, image, timestamp, channel }) {
+export default function ImgMediaCard({ isHome,id, views, subs, description, title, image, timestamp, channel }) {
     const classes = useStyles();
+    const today = new Date();
+    const publishedAt = new Date(timestamp);
+    const numHours = Math.floor(Math.abs(today - publishedAt) / 36e5);
+    const numDays = Math.floor(numHours / 24);
+    const numWeeks = Math.floor(numDays / 7);
+    const numMonths = Math.floor(numDays / 30);
+    const numYears = Math.floor(numDays / 365);
 
     return (
-        <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className={isHome? classes.cardActionAreaHome:classes.cardActionArea}>
                 <Link href={`https://www.youtube.com/watch?v=${id}`}>
                     <CardMedia
+                        className={classes.cardMedia}
                         component="img"
                         alt=""
                         height="220"
@@ -32,7 +55,10 @@ export default function ImgMediaCard({ id, views, subs, description, title, imag
                 </Link>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        <Link href={`https://www.youtube.com/watch?v=${id}`}>
+                        <Link
+                            underline="none"
+                            className={classes.videoTitle}
+                            href={`https://www.youtube.com/watch?v=${id}`}>
                             {title}
                         </Link>
                     </Typography>
@@ -40,18 +66,10 @@ export default function ImgMediaCard({ id, views, subs, description, title, imag
                         {channel}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {description} .{subs}.{views}.{timestamp}
+                        {description} .{subs}.{views}.{(numDays < 1) ? `${numHours} hours` : `${numDays} days`} ago
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
-        </Card>
+     
     );
 }

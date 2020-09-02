@@ -41,7 +41,7 @@ const CountProvider = ({ value = 0, ...props }) => {
         status: false,
         clientLoaded: false,
         searchTerm: '',
-        result:{},
+        result:[],
         hasResult:false,
 
     });
