@@ -18,7 +18,7 @@ Exploring UI development possibilities with Material UI
 
 
 
-## Functionalities/Limitations
+## Functionalities and Limitations
 
 Go to the following link: 
 
