@@ -28,7 +28,7 @@ https://jasper--clone.firebaseapp.com/
 - Search bar is fully functional, however, due to the limited information provided within the API response, some details such as the number of views, the length of the videos, among other things, are not displayed in the search result
 - Filter options under "upload date" are functional for demonstration purposes
 - React context and reducer are used to provide a global state in facilitating interactions between components while keeping them compartmentalized at the same time
-- Without backend, most of the buttons are UI display only
+- Without a backend, most of the buttons are UI display only
 
 
 
