@@ -33,7 +33,7 @@ const useRowStyles = makeStyles({
         boxShadow: "none",
     }
 });
-
+//helper function to quickly populate a table
 function createData(upload, type, duration, features, sort) {
     return {
         upload,
@@ -43,82 +43,7 @@ function createData(upload, type, duration, features, sort) {
         sort,
     };
 }
-
-function Row(props) {
-    const [state, dispatch] = useCountContext();
-    const handleFilter = (event) => {
-        const targetName = event.target.getAttribute('name');
-        if (state.hasResult) {
-            let filterResult;
-            switch (targetName) {
-                case "Last hour":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 1);
-                    console.log(filterResult, targetName)
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
-                    break
-
-                case "Today":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 24);
-                    console.log(filterResult,targetName)
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
-                    break
-
-                case "This week":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 168);
-                    console.log(filterResult,targetName)
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
-                    break
-
-                case "This month":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 720);
-                    console.log(filterResult,targetName)
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
-                    break
-
-                case "This year":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 8736);
-                    console.log(filterResult,targetName)
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
-                    break
-
-            }
-            // console.log(filterResult);
-            // dispatch({
-            //     type: "result",
-            //     result: filterResult,
-            // })
-
-        } else { console.log("no result") }
-    }
-    const { row } = props;
-    return (
-        <React.Fragment>
-            <TableRow>
-                <TableCell  ><ListItem button onClick={handleFilter} value="upload" name={row.upload}>{row.upload}</ListItem> </TableCell>
-                <TableCell onClick={handleFilter} value="type" name={row.type}>{row.type} </TableCell>
-                <TableCell onClick={handleFilter} value="duration" name={row.duration}>{row.duration} </TableCell>
-                <TableCell onClick={handleFilter} value="features" name={row.features}>{row.features} </TableCell>
-                <TableCell onClick={handleFilter} value="sort" name={row.sort}>{row.sort} </TableCell>
-            </TableRow>
-        </React.Fragment>
-    );
-}
-
+//create talbe "rows" to be injected into Row class later
 const rows = [
     createData("Last hour", "Video", "Short(<4 minutes)", "Live", "Relevance"),
     createData("Today", "Channel", "Long (>20 minutes)", "4K", "Upload date"),
@@ -133,14 +58,81 @@ const rows = [
     createData("", "", "", "Purchased", ""),
 ];
 
+function Row(props) {
+    const [state, dispatch] = useCountContext();
+    //only including logic for date related filtering, for demonstration only
+    const handleFilter = (event) => {
+        const targetName = event.target.getAttribute('name');
+        if (state.hasResult) {
+            let filterResult;
+            switch (targetName) {
+                case "Last hour":
+                    // calculating the number of hours between now and content published date
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 1);
+                    // global state needs this filtered array to display filter results
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "Today":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 24);
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This week":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 168);
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This month":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 720);
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+
+                case "This year":
+                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 8736);
+                    dispatch({
+                        type: "result",
+                        result: filterResult,
+                    })
+                    break
+            }
+        } else { console.log("no result") }
+    }
+    const { row } = props;
+    return (
+        <React.Fragment>
+            <TableRow>
+                <TableCell  ><ListItem button onClick={handleFilter} value="upload" name={row.upload}>{row.upload}</ListItem> </TableCell>
+                {/* no other tableCell has filter function, due to limited data from the API */}
+                <TableCell  value="type" name={row.type}>{row.type} </TableCell> 
+                <TableCell  value="duration" name={row.duration}>{row.duration} </TableCell>
+                <TableCell  value="features" name={row.features}>{row.features} </TableCell>
+                <TableCell  value="sort" name={row.sort}>{row.sort} </TableCell>
+            </TableRow>
+        </React.Fragment>
+    );
+}
+
 export default function CollapsibleTable() {
     const classes = useRowStyles();
+    //useState to control the conllapse state of Collapse component
     const [open, setOpen] = React.useState(false);
     return (
         <Table className={classes.table} aria-label="collapsible table">
             <TableRow >
                 <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                    {/* {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />} */}
                     <div className="searchPage__filter">
                         <TuneIcon />
                         <h2>FILTER</h2>

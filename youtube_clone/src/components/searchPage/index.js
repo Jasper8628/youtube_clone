@@ -12,11 +12,6 @@ function Index() {
 
     const classes = useStyles();
     const [state, dispatch] = useCountContext();
-    useEffect(() => {
-
-
-    }, []);
-
     return (
         <div className={clsx(classes.mainPage, {
             [classes.mainPageShift]: state.status,
@@ -25,12 +20,8 @@ function Index() {
             <br />
             <br />
             <div className="searchPage">
-                {/* <div className="searchPage__filter">
-                    <TuneIcon />
-                    <h2>FILTER</h2>
-                </div> */}
+       
                 <Filter />
-                {/* <hr /> */}
                 {state.hasResult ? (
                     state.result.map((item, index) => (
                         <div key={index}>
@@ -46,18 +37,8 @@ function Index() {
                         </div>
                     ))
                 ) : (<p>nothing to show</p>)}
-                {/* <hr /> */}
-                {/* <ChannelRow
-                image=''
-                channel='sample channel' 
-                verified='true'
-                subs='200'
-                noOfVideos='10'
-                description='blahblahdddddddddddddddddddddddddddddddddddddddddddddddddddddddd'
-                /> */}
-
+        
             </div>
-            {/* <VidewRow /> */}
 
 
 

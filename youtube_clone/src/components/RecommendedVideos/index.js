@@ -10,6 +10,7 @@ function Index() {
     const [state, dispatch] = useCountContext();
 
     useEffect(() => {
+        // state.clientLoaded checks if the page has been refreshed, if so, google auth will trigger again
         if (!state.clientLoaded) {
             console.log(process.env.REACT_APP_CLIENT_ID);
             gapi.load("client:auth2", function () {
@@ -44,6 +45,7 @@ function Index() {
     }
     // Make sure the client is loaded and sign-in is complete before calling this method.
     function execute() {
+        // for demonstration purposes, this function fetches a sample data to prop video components
         return gapi.client.youtube.search.list({
             "part": [
                 "snippet"
@@ -54,6 +56,7 @@ function Index() {
             .then(function (response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
+                // fetched data is passed to the global state, to be then passed to the video components
                 dispatch({
                     type:"result",
                     result:response.result.items,

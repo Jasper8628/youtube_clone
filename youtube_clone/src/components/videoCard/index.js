@@ -38,11 +38,10 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
     const publishedAt = new Date(timestamp);
     const numHours = Math.floor(Math.abs(today - publishedAt) / 36e5);
     const numDays = Math.floor(numHours / 24);
-    const numWeeks = Math.floor(numDays / 7);
-    const numMonths = Math.floor(numDays / 30);
-    const numYears = Math.floor(numDays / 365);
 
     return (
+        // isHome is used to check whether component is display on Home page or Search page, 
+        // display rules change accordingly
             <CardActionArea className={isHome? classes.cardActionAreaHome:classes.cardActionArea}>
                 <Link href={`https://www.youtube.com/watch?v=${id}`}>
                     <CardMedia

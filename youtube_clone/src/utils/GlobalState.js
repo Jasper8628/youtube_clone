@@ -4,6 +4,7 @@ const { Provider } = CountContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
+        //using "open" and "close" globally to control content body's width in response to menu sidebar
         case "open":
             return {
                 ...state,
@@ -14,6 +15,7 @@ const reducer = (state, action) => {
                 ...state,
                 status: false,
             }
+        //if false,google auth will trigger
         case "clientLoaded":
             return {
                 ...state,
@@ -24,6 +26,7 @@ const reducer = (state, action) => {
                 ...state,
                 searchTerm: action.searchTerm,
             }
+        //api response passed by search button to prop video display components
         case "result":
             return {
                 ...state,
