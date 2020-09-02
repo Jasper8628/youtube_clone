@@ -6,7 +6,7 @@ Creator:
 
 ## Description
 
-YouTube skileton UI materialized using Material UI
+YouTube skileton UI materialized using Material UI, 
 Exploring UI development possibilities with Material UI
 
 ## Functionalities and Limitations
