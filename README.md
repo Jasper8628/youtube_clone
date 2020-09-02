@@ -41,6 +41,7 @@ https://jasper--clone.firebaseapp.com/
 - React.js v16.6.3
 - Material UI
 - Firebase Hosting
+- Google Auth2
 - YouTube API
 
 ## License
