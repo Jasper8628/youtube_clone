@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import Header from "./Header";
-import SideBar from './SiderBar';
-import RecommendedVideos from './RecommendedVideos';
+import SideBar from './components/SiderBar';
+import RecommendedVideos from './components/RecommendedVideos';
 import Drawer from './Drawer';
-import SearchPage from './searchPage';
+import SearchPage from './components/searchPage';
 import { CountProvider, useCountContext } from "./utils/GlobalState";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

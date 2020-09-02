@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
-import useStyles from '../styles';
+import useStyles from '../../styles';
 import clsx from 'clsx';
-import { useCountContext } from "../utils/GlobalState";
+import { useCountContext } from "../../utils/GlobalState";
 import { useEffect } from 'react';
 import gapi from 'gapi-client';
 import VideoCard from '../videoCard';
@@ -11,8 +11,9 @@ function Index() {
 
     useEffect(() => {
         if (!state.clientLoaded) {
+            console.log(process.env.REACT_APP_CLIENT_ID);
             gapi.load("client:auth2", function () {
-                gapi.auth2.init({ client_id: process.env.CLIENT_ID})
+                gapi.auth2.init({ client_id: process.env.REACT_APP_CLIENT_ID})
                     .then(() => {
                         dispatch({
                             type: "clientLoaded"
@@ -30,7 +31,7 @@ function Index() {
                 function (err) { console.error("Error signing in", err); });
     }
     function loadClient() {
-        gapi.client.setApiKey(process.env.REACT_API_KEY);
+        gapi.client.setApiKey(process.env.REACT_APP_API_KEY);
         return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
             .then(function () {
                 console.log("GAPI client loaded for API");

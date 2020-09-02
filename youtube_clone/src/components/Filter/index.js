@@ -13,7 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TuneIcon from '@material-ui/icons/Tune';
-import { useCountContext } from "../utils/GlobalState";
+import { useCountContext } from "../../utils/GlobalState";
 import { ListItem } from '@material-ui/core';
 
 const useRowStyles = makeStyles({

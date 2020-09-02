@@ -27,37 +27,6 @@
 </head>
 
 <body>
-  <!-- <script>
-    let init = false;
-
-    function authenticate() {
-      return gapi.auth2.getAuthInstance()
-        .signIn({ scope: "https://www.googleapis.com/auth/youtube.force-ssl" })
-        .then(function () { console.log("Sign-in successful"); },
-          function (err) { console.error("Error signing in", err); });
-    }
-    function loadClient() {
-      gapi.client.setApiKey("AIzaSyB_JD6U7HyG5Biz650MYRfJhvoCcy3auro");
-      return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-        .then(function () {
-          dispatch({
-            type: "clientLoaded"
-          })
-          console.log("GAPI client loaded for API");
-        },
-          function (err) { console.error("Error loading GAPI client for API", err); });
-    }
-    gapi.load("client:auth2", function () {
-      gapi.auth2.init({ client_id: "687867203815-iqtamg9uur9dfrk94u2uaa8hjba6qgic.apps.googleusercontent.com" });
-      init = true;
-      console.log(init);
-    });
-    if (init) {
-      authenticate().then(loadClient)
-    } else{ 
-      console.log("can't authenticate");
-    }
-  </script> -->
 
 
   <noscript>You need to enable JavaScript to run this app.</noscript>
