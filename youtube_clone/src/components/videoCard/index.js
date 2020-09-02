@@ -17,15 +17,22 @@ const useStyles = makeStyles({
     cardActionArea: {
         display: "flex",
         maxWidth: "70%",
+        height:"140px",
         justifyContent:"start",
+        marginBottom:"10px"
     },
     cardActionAreaHome:{
-       width:"300px",
+       width:"340px",
     },
     cardMedia: {
         objectFit: "contain",
         height: "138px",
         width: "246px",
+    },
+    cardMediaHome:{
+        objectFit: "contain",
+        height: "180px",
+        width: "320px",
     },
     videoTitle: {
         color: "black",
@@ -45,7 +52,7 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
             <CardActionArea className={isHome? classes.cardActionAreaHome:classes.cardActionArea}>
                 <Link href={`https://www.youtube.com/watch?v=${id}`}>
                     <CardMedia
-                        className={classes.cardMedia}
+                        className={isHome?classes.cardMediaHome: classes.cardMedia}
                         component="img"
                         alt=""
                         height="220"

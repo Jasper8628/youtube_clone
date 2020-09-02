@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "jasper-youtube-clone"
+    "default": "jasper-youtube-clone",
+    "testing": "newproject-f22cf"
   }
 }

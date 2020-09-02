@@ -4,8 +4,6 @@ import useStyles from '../../styles';
 import clsx from 'clsx';
 import { useCountContext } from "../../utils/GlobalState";
 import TuneIcon from '@material-ui/icons/Tune';
-import ChannelRow from '../../ChannelRow';
-import VidewRow from '../../videoRow';
 import VideoCard from '../videoCard';
 import Filter from '../Filter';
 function Index() {

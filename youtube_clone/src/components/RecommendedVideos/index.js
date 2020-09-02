@@ -14,7 +14,7 @@ function Index() {
         if (!state.clientLoaded) {
             console.log(process.env.REACT_APP_CLIENT_ID);
             gapi.load("client:auth2", function () {
-                gapi.auth2.init({ client_id: process.env.REACT_APP_CLIENT_ID})
+                gapi.auth2.init({ client_id: process.env.REACT_APP_CLIENT_ID })
                     .then(() => {
                         dispatch({
                             type: "clientLoaded"
@@ -23,7 +23,7 @@ function Index() {
                         authenticate().then(loadClient);
                     });
             });
-        } else {execute()}
+        } else { execute() }
     }, []);
     function authenticate() {
         return gapi.auth2.getAuthInstance()
@@ -58,8 +58,8 @@ function Index() {
                 console.log("Response", response);
                 // fetched data is passed to the global state, to be then passed to the video components
                 dispatch({
-                    type:"result",
-                    result:response.result.items,
+                    type: "result",
+                    result: response.result.items,
                 })
             },
                 function (err) { console.error("Execute error", err); });
@@ -75,10 +75,10 @@ function Index() {
             <br />
             <br />
             <h1>Recommended videos</h1>
-            
-            {state.hasResult ? (
+            <div className="videoContainer" >
+                {state.hasResult ? (
                     state.result.map((item, index) => (
-                        <div className="videoContainer" key={index}>
+                        <div className="vidInnerContainer" key={index}>
                             <VideoCard
                                 isHome={true}
                                 id={item.id.videoId}
@@ -86,11 +86,13 @@ function Index() {
                                 description={item.snippet.description}
                                 timestamp={item.snippet.publishedAt}
                                 channel={item.snippet.channelTitle}
-                                image={item.snippet.thumbnails.default.url}
+                                image={item.snippet.thumbnails.medium.url}
                             />
                         </div>
                     ))
                 ) : (<p>nothing to show</p>)}
+
+            </div>
 
         </div>
     )
