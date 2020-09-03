@@ -6,19 +6,10 @@ Creator:
 
 ## Description
 
-Exploring UI development possibilities with Material UI
+An attempt to replicate YouTube's skeleton UI components while 
+exploring UI development possibilities with Material UI
 
-
-
-## Table of Contents (Optional)
-
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-
-
-## Functionalities/Limitations
+## Functionalities and Limitations
 
 Go to the following link: 
 
@@ -26,7 +17,7 @@ https://newproject-f22cf.firebaseapp.com/
 
 - YouTubeApi is utilised to provide a sample data package propping various UI components
 - Search bar is fully functional, however, due to the limited information provided within the API response, some details such as the number of views, the length of the videos, among other things, are not displayed in the search result
-- Filter options under "upload date" are functional for demonstration purposes
+- Filter options under "upload date" are functional for demonstration purposes, to return to the full search results, click the search button again
 - React context and reducer are used to provide a global state in facilitating interactions between components while keeping them compartmentalized at the same time
 - Without a backend, most of the buttons are UI display only
 
