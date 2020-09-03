@@ -20,7 +20,8 @@ function Index() {
                             type: "clientLoaded"
                         });
                         console.log("gapi.load");
-                        authenticate().then(loadClient);
+                        // authenticate().then(loadClient);
+                        loadClient();
                     });
             });
         } else { execute() }

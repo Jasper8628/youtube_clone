@@ -50,7 +50,7 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
         // isHome is used to check whether component is display on Home page or Search page, 
         // display rules change accordingly
             <CardActionArea className={isHome? classes.cardActionAreaHome:classes.cardActionArea}>
-                <Link href={`https://www.youtube.com/watch?v=${id}`}>
+                <Link href={`https://www.youtube.com/watch?v=${id}`} target="_blank">
                     <CardMedia
                         className={isHome?classes.cardMediaHome: classes.cardMedia}
                         component="img"
@@ -64,7 +64,7 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
                         <Link
                             underline="none"
                             className={classes.videoTitle}
-                            href={`https://www.youtube.com/watch?v=${id}`}>
+                            href={`https://www.youtube.com/watch?v=${id}`} target="_blank">
                             {title}
                         </Link>
                     </Typography>
