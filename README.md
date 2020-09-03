@@ -15,7 +15,6 @@ Go to the following link:
 
 https://newproject-f22cf.firebaseapp.com/
 
-- Due to the Google APIs involved, users will be prompted to sign in with Google to proceed, please make sure the browser pop-up block is turned off for this site, just like other social media login conveniences
 - YouTubeApi is utilised to provide a sample data package propping various UI components
 - Search bar is fully functional, however, due to the limited information provided within the API response, some details such as the number of views, the length of the videos, among other things, are not displayed in the search result
 - Filter options under "upload date" are functional for demonstration purposes, to return to the full search results, click the search button again
