@@ -64,48 +64,29 @@ function Row(props) {
     const handleFilter = (event) => {
         const targetName = event.target.getAttribute('name');
         if (state.hasResult) {
-            let filterResult;
+            const calHour=(hour)=>{
+                // calculating the number of hours between now and the timestamp
+               const filterResult=state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= hour);
+                dispatch({
+                    type: "result",
+                    result: filterResult,
+                });
+            }
             switch (targetName) {
                 case "Last hour":
-                    // calculating the number of hours between now and content published date
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 1);
-                    // global state needs this filtered array to display filter results
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
+                    calHour(1);
                     break
-
                 case "Today":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 24);
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
+                    calHour(24);
                     break
-
                 case "This week":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 168);
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
+                    calHour(169);
                     break
-
                 case "This month":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 720);
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
+                    calHour(720);
                     break
-
                 case "This year":
-                    filterResult = state.result.filter(item => Math.abs((new Date(item.snippet.publishedAt)) - (new Date())) / 36e5 <= 8736);
-                    dispatch({
-                        type: "result",
-                        result: filterResult,
-                    })
+                    calHour(8736);
                     break
             }
         } else { console.log("no result") }

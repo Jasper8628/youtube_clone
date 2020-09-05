@@ -16,8 +16,8 @@ const useStyles = makeStyles({
     },
     cardActionArea: {
         display: "flex",
-        maxWidth: "70%",
-        height:"140px",
+        maxWidth: "80%",
+        maxHeight:"140px",
         justifyContent:"start",
         marginBottom:"10px"
     },
@@ -36,6 +36,16 @@ const useStyles = makeStyles({
     },
     videoTitle: {
         color: "black",
+    },
+    typography:{
+        WebkitBoxLines:2,
+        WebkitBoxOrient:"vertical",
+        textOverflow: "ellipsis",
+        display: "block",
+        overflow:"hidden",
+    },
+    cardContent:{
+        display:"block"
     }
 });
 
@@ -60,7 +70,7 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
                     />
                 </Link>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography className="videoRow__text" gutterBottom variant="h5" component="h2">
                         <Link
                             underline="none"
                             className={classes.videoTitle}
@@ -68,10 +78,10 @@ export default function ImgMediaCard({ isHome,id, views, subs, description, titl
                             {title}
                         </Link>
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.typography}>
                         {channel}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography className="videoRow__description" variant="body2" color="textSecondary" component="p">
                         {description} .{subs}.{views}.{(numDays < 1) ? `${numHours} hours` : `${numDays} days`} ago
                     </Typography>
                 </CardContent>
