@@ -51,7 +51,7 @@ function Index() {
             "part": [
                 "snippet"
             ],
-            "maxResults": 2,
+            "maxResults": 25,
             "q": "javascript"
         })
             .then(function (response) {

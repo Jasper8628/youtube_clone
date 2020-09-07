@@ -1,31 +1,27 @@
 import React from 'react';
 import './App.css';
-import Header from "./Header";
 import SideBar from './components/SiderBar';
 import RecommendedVideos from './components/RecommendedVideos';
 import SearchPage from './components/searchPage';
 import { CountProvider, useCountContext } from "./utils/GlobalState";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppBar from './components/AppBar';
-
+import Home from './pages/Home';
+import Search from './pages/Search';
 function App() {
   return (
     <CountProvider>
       <Router>
         <div className="app">
           <AppBar />
-          <div className="app__page">
             <Switch>
               <Route exact path="/">
-                <SideBar/>
-                <RecommendedVideos />
+                <Home/>
               </Route>
               <Route exact path="/search/:searchTerm">
-                <SideBar/>
-                <SearchPage />
+                <Search/>
               </Route>
             </Switch>
-          </div>
         </div>
       </Router>
     </CountProvider>
