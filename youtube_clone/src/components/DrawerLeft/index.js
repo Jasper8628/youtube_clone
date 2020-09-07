@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useStyles from '../../styles';
-
 import { Link } from "react-router-dom";
-import clsx from 'clsx';
 import { useCountContext } from '../../utils/GlobalState';
-import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,20 +20,15 @@ import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import HistoryIcon from '@material-ui/icons/History';
 import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-
-import InputBase from '@material-ui/core/InputBase';
-import gapi from 'gapi-client';
-
 function Index() {
-    
     const classes = useStyles();
     const [state, dispatch] = useCountContext();
     const handleDrawerClose=()=>{
         dispatch({
             type:"open"
         })
-
     }
+    // using static arrays to quickly populate lists for display only
     const array1 = [
         {
             name: "Home",
@@ -102,7 +93,6 @@ function Index() {
                             alt=""
                         />
                     </Link>
-
                 </div>
                 <Divider />
                 <List>

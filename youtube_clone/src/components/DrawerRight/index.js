@@ -1,36 +1,26 @@
 import React, { useState } from 'react';
-import useStyles from '../../styles';
-import axios from 'axios';
-
-import { Link } from "react-router-dom";
-import clsx from 'clsx';
 import { useCountContext } from '../../utils/GlobalState';
-import { useTheme } from '@material-ui/core/styles';
+import axios from 'axios';
+import Input from '@material-ui/core/Input';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import InputBase from '@material-ui/core/InputBase';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
-import gapi from 'gapi-client';
 import Signup from '../Signup';
+import useStyles from '../../styles';
 
 function Index() {
     const [open, setOpen] = useState(false);
-
     const classes = useStyles();
     const [state, dispatch] = useCountContext();
     const [formInput, setFormInput] = useState({});
+    // universal form input handler, stores value with useState, based on the name property of each input field
     const handleFormInput = (event) => {
         const { name, value } = event.target;
         setFormInput({ ...formInput, [name]: value })
@@ -44,7 +34,7 @@ function Index() {
                 const token = res.data.key;
                 console.log('login successful ', res.data);
                 localStorage.setItem('token', token);
-                localStorage.setItem('username',formInput.username)
+                localStorage.setItem('username', formInput.username)
                 dispatch({
                     type: "login",
                     username: formInput.username
@@ -69,7 +59,7 @@ function Index() {
     return (
         <div>
             <Drawer
-                className={classes.drawer}
+                className={classes.drawerRight}
                 variant="persistent"
                 anchor="right"
                 open={state.openRight}
@@ -82,52 +72,22 @@ function Index() {
                         <KeyboardArrowRightIcon />
                     </IconButton>
                     {state.isAuthenticated ? (`Welcome ${state.username}!`) : ('')}
-                    <Link className={classes.linkComponent} to="/">
-
-                    </Link>
                 </div>
                 <Divider />
                 <List>
+                    {/* check global state to see if user is signed in, then only show logout button, otherwise show both log in and sign up */}
                     {!state.isAuthenticated ? (
                         <div>
-                            <ListItem className="drawerList" button >
-                                <InputBase
-                                    value={formInput.username}
-                                    name="username"
-                                    onChange={handleFormInput}
-                                    placeholder="username"
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                    inputProps={{ 'aria-label': 'username' }}
-                                />
-                            </ListItem>
-                            <ListItem className="drawerList" button >
-                                <InputBase
-                                    type="password"
-                                    value={formInput.password}
-                                    name="password"
-                                    onChange={handleFormInput}
-                                    placeholder="password"
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                    inputProps={{ 'aria-label': 'password' }}
-                                />
-                            </ListItem>
-                            <ListItem className="drawerList" button onClick={handleCollapseOpen}>
-                                <IconButton onClick={handleLogin}>Log in
-                            <LockOpenIcon />
-                                </IconButton>
-                            </ListItem>
+                            <form >
+                                <Input value={formInput.username} name="username" onChange={handleFormInput} placeholder="username" />
+                                <Input value={formInput.password2} name="password" onChange={handleFormInput} type="password" placeholder="password" />
+                                <IconButton onClick={handleLogin}>Log in<LockOpenIcon /></IconButton>
+                            </form>
                             <ListItem className="drawerList" button onClick={handleCollapseOpen}>
                                 <ListItemText primary="Sign up" />
                             </ListItem>
-
                             <Collapse in={open} timeout="auto" unmountOnExit>
-                               <Signup/>
+                                <Signup />
                             </Collapse>
                         </div>
 
@@ -138,8 +98,6 @@ function Index() {
                                 </IconButton>
                             </ListItem>
                         )}
-
-
                 </List>
             </Drawer>
         </div>

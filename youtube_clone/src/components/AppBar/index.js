@@ -1,6 +1,4 @@
 import React, { useState ,useEffect} from 'react';
-import useStyles from '../../styles';
-
 import { Link } from "react-router-dom";
 import clsx from 'clsx';
 import { useCountContext } from '../../utils/GlobalState';
@@ -12,28 +10,28 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AppsIcon from '@material-ui/icons/Apps';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Avatar from '@material-ui/core/Avatar';
-
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import gapi from 'gapi-client';
 import DrawerLeft from '../DrawerLeft';
 import DrawerRight from '../DrawerRight';
+import useStyles from '../../styles';
+
 function Index() {
+    const classes = useStyles();
+    const [inputSearch, setInputSearch] = useState('');
+    const [state, dispatch] = useCountContext();
     useEffect(()=>{
+        // check localstorage to determine is user has already logged in
        if(localStorage.getItem('token')){
            dispatch({
                type:"login",
                username:localStorage.getItem('username')
            })
        }
-
     },[])
-    const [state, dispatch] = useCountContext();
-    const [inputSearch, setInputSearch] = useState('');
-    const classes = useStyles();
 
     const handleSearch = () => {
         return gapi.client.youtube.search.list({
@@ -52,9 +50,7 @@ function Index() {
                 })
             },
                 function (err) { console.error("Execute error", err); });
-
     }
-
     const handleDrawerLeftOpen = () => {
         dispatch({
             type: "open"
@@ -91,21 +87,12 @@ function Index() {
                             alt=""
                         />
                     </Link>
-                    {/* <Typography className={classes.title} variant="h6" noWrap>
-                        YouTube Clone
-                    </Typography> */}
                     <div className={classes.grow} />
                     <div className={classes.search}>
-
                         <InputBase
                             value={inputSearch}
                             onChange={e => setInputSearch(e.target.value)}
                             placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
                         />
                         <Link to={`/search/${inputSearch}`}
                             className={classes.search_Icon}

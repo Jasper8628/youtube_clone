@@ -8,6 +8,7 @@ import gapi from 'gapi-client';
 import VideoCard from '../videoCard';
 function Index() {
     const [state, dispatch] = useCountContext();
+    const classes = useStyles();
 
     useEffect(() => {
         // state.clientLoaded checks if the page has been refreshed, if so, google auth will trigger again
@@ -65,9 +66,6 @@ function Index() {
             },
                 function (err) { console.error("Execute error", err); });
     }
-
-
-    const classes = useStyles();
     return (
         <div className={clsx(classes.mainPage, {
             [classes.mainPageShift]: state.status,
@@ -92,9 +90,7 @@ function Index() {
                         </div>
                     ))
                 ) : (<p>nothing to show</p>)}
-
             </div>
-
         </div>
     )
 }

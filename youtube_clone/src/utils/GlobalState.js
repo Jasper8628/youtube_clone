@@ -4,7 +4,7 @@ const { Provider } = CountContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
-        //using "open" and "close" globally to control content body's width in response to menu sidebar
+        //using "open" and "openRight" globally to control content body's width in response to menu sidebars
         case "open":
             return {
                 ...state,

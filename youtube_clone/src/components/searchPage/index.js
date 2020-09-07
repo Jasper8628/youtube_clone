@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './style.css';
 import useStyles from '../../styles';
 import clsx from 'clsx';
 import { useCountContext } from "../../utils/GlobalState";
-import TuneIcon from '@material-ui/icons/Tune';
 import VideoCard from '../videoCard';
 import Filter from '../Filter';
 function Index() {
-
     const classes = useStyles();
     const [state, dispatch] = useCountContext();
     return (
@@ -18,7 +16,6 @@ function Index() {
             <br />
             <br />
             <div className="searchPage">
-       
                 <Filter />
                 {state.hasResult ? (
                     state.result.map((item, index) => (
@@ -35,12 +32,7 @@ function Index() {
                         </div>
                     ))
                 ) : (<p>nothing to show</p>)}
-        
             </div>
-
-
-
-
         </div>
     )
 }
