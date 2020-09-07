@@ -3,17 +3,17 @@ import './App.css';
 import Header from "./Header";
 import SideBar from './components/SiderBar';
 import RecommendedVideos from './components/RecommendedVideos';
-import Drawer from './Drawer';
 import SearchPage from './components/searchPage';
 import { CountProvider, useCountContext } from "./utils/GlobalState";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AppBar from './components/AppBar';
 
 function App() {
   return (
     <CountProvider>
       <Router>
         <div className="app">
-          <Drawer />
+          <AppBar />
           <div className="app__page">
             <Switch>
               <Route exact path="/">

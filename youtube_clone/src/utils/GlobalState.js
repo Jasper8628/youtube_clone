@@ -8,18 +8,29 @@ const reducer = (state, action) => {
         case "open":
             return {
                 ...state,
-                status: true,
+                status: !state.status,
             }
-        case "close":
+        case "openRight":
             return {
                 ...state,
-                status: false,
+                openRight: !state.openRight,
             }
         //if false,google auth will trigger
         case "clientLoaded":
             return {
                 ...state,
                 clientLoaded: true,
+            }
+        case "login":
+            return {
+                ...state,
+                isAuthenticated: true,
+                username:action.username,
+            }
+        case "logout":
+            return {
+                ...state,
+                isAuthenticated: false,
             }
         case "search":
             return {
@@ -30,7 +41,7 @@ const reducer = (state, action) => {
         case "result":
             return {
                 ...state,
-                hasResult:true,
+                hasResult: true,
                 result: action.result,
             }
         default:
@@ -44,8 +55,10 @@ const CountProvider = ({ value = 0, ...props }) => {
         status: false,
         clientLoaded: false,
         searchTerm: '',
-        result:[],
-        hasResult:false,
+        result: [],
+        hasResult: false,
+        isAuthenticated: false,
+        username:'',
 
     });
 
